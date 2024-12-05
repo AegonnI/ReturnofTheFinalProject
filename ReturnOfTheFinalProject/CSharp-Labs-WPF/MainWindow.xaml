@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSharp_Labs_WPF"
         mc:Ignorable="d"
-        Title="AegonLabs" Height="510" Width="900
-        ">
+        Closing="DataWindow_Closing"
+        Title="AegonLabs" Height="370" Width="1000">
 
     <Window.Resources>
         <ResourceDictionary x:Name="Theme" Source="Themes/Dark.xaml"/>
@@ -17,48 +17,33 @@
 
     <Grid x:Name="mainGrid" Background="{DynamicResource Background}">
 
-        <!--
-        <Grid x:Name="TaskBox">
-            <Label x:Name="taskNameLabel" FontSize="16" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="taskTextLabel" FontSize="12" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="Label" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" FontWeight="Normal"/>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="userValue1" Grid.Column="1" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="userValue2" Grid.Column="1" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="userValue3" Grid.Column="1" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+            <Label x:Name="valueName1" Grid.Column="0" FontSize="14" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="Rubles" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25"/>
+            <Label x:Name="valueName2" Grid.Column="0" FontSize="14" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="Kopeks" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="25"/>
+            <Label x:Name="valueName3" Grid.Column="0" FontSize="14" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="Minus Kopeks" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="25"/>
+
+            <Button x:Name="showResultButton" Grid.Column="2" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" Content="Show_Result" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Show_Result_Click"/>
+
+
+            <Label x:Name="resultLabel" Grid.Row="0" Grid.Column="3" FontSize="16" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="here will be the answer" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" BorderBrush="Orange" Background="{x:Null}" BorderThickness="1,1,1,1"/>
+            <Label x:Name="resultLabel2" Grid.Row="1" Grid.Column="3" FontSize="16" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="there will be overloads here" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" BorderBrush="Orange" Background="{x:Null}" BorderThickness="1,1,1,1"/>
         </Grid>
-        -->
-
-        <Grid x:Name="inputAndOutput">
-            <Grid x:Name="input">
-                <Grid HorizontalAlignment="Left">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="userValue1" Grid.Column="1" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="userValue2" Grid.Column="1" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="userValue3" Grid.Column="1" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-
-                    <Label x:Name="valueName1" Grid.Column="0" FontSize="14" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="Rubles" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25"/>
-                    <Label x:Name="valueName2" Grid.Column="0" FontSize="14" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="Kopeks" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="25"/>
-                    <Label x:Name="valueName3" Grid.Column="0" FontSize="14" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="Minus Kopeks" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="25"/>
-
-                    <Button x:Name="showResultButton" Grid.Column="2" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" Content="Show_Result" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Show_Result_Click"/>
-
-                    <Label x:Name="resultLabel" Grid.Column="3" FontSize="16" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" BorderBrush="Orange" Background="{x:Null}" BorderThickness="1,1,1,1"/>
-                </Grid>
-            </Grid>
-
-            <Grid x:Name="output" Panel.ZIndex="-1">
-                
-            </Grid>
-
-        </Grid>
-
-
-        <Grid x:Name="Ellipses" Panel.ZIndex="-1"/>
-
         <Button x:Name="switchTheme" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" Content="Switch Theme" HorizontalAlignment="Right" Margin="0,0,15,15" VerticalAlignment="Bottom" Click="DarkLightToggle_Click"/>
-        <!--
-        <Button x:Name="showHideTaskText" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" Content="Show-Hide Task Text" HorizontalAlignment="Left" Margin="15,0,0,15" VerticalAlignment="Bottom" Click="showHideTaskText_Click"/>
-        -->
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+﻿using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,14 +18,27 @@ namespace CSharp_Labs_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string task;
-        bool isDarkTheme = true; // 0 - light, 1 - dark
+        private bool isDarkTheme = true; // 0 - light, 1 - dark
 
         public MainWindow()
         {
             InitializeComponent();
 
-            VisualChanger.ChangeTheme(isDarkTheme, Theme);
+            if (File.Exists("data.dat"))
+            {
+                StreamReader f = new StreamReader("data.dat");
+                try { isDarkTheme = bool.Parse(f.ReadLine()); }
+                catch { isDarkTheme = true; }
+                f.Close();
+            }
+            ChangeTheme();
+        }
+
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+        {
+            StreamWriter f = new StreamWriter("data.dat");
+            f.WriteLine(isDarkTheme);
+            f.Close();
         }
 
         private void Show_Result_Click(object sender, RoutedEventArgs e)
@@ -33,44 +47,45 @@ namespace CSharp_Labs_WPF
             {
                 Money money = new Money(uint.Parse(userValue1.Text), byte.Parse(userValue2.Text));
 
-                resultLabel.Content = "ToString: " + money.ToString();
+                resultLabel.Content = "Answer: " + (money - uint.Parse(userValue3.Text)).ToString();
 
-                resultLabel.Content += "\noverload '+': " + (money + uint.Parse(userValue3.Text)).ToString();
-                resultLabel.Content += "\noverload '-' (Money - m): " + (money - uint.Parse(userValue3.Text)).ToString();
-                resultLabel.Content += "\noverload '-' (m - Money): " + (uint.Parse(userValue3.Text) - money).ToString();
+                resultLabel2.Content = "\noverload '+': " + (money + uint.Parse(userValue3.Text)).ToString();
+                resultLabel2.Content += "\noverload '-' (Money - m): " + (money - uint.Parse(userValue3.Text)).ToString();
+                resultLabel2.Content += "\noverload '-' (m - Money): " + (uint.Parse(userValue3.Text) - money).ToString();
                 {
                     Random rand = new Random();
                     Money money2 = new Money((uint)rand.Next(0, 100), (byte)rand.Next(0, 99));
-                    resultLabel.Content += $"\noverload '-' (Money1 - Money2({money2.Rubles}, {money2.Kopeks})): " + (money - money2).ToString();
+                    resultLabel2.Content += $"\noverload '-' (Money1 - Money2({money2.Rubles}, {money2.Kopeks})): " + (money - money2).ToString();
                 }
-                resultLabel.Content += "\noverload '++': " + (++money).ToString();
-                resultLabel.Content += "\noverload '--': " + (--money).ToString();
-                resultLabel.Content += "\nexplicit uint: " + ((uint)money).ToString();
-                resultLabel.Content += "\nimplicit bool: " + (money == true).ToString();
+                resultLabel2.Content += "\noverload '++': " + (++money).ToString();
+                resultLabel2.Content += "\noverload '--': " + (--money).ToString();
+                resultLabel2.Content += "\nexplicit uint: " + ((uint)money).ToString();
+                resultLabel2.Content += "\nimplicit bool: " + (money == true).ToString();
             }
             else
             {
-                resultLabel.Content = "Incorrect input, try again!";
+                resultLabel.Content = "Read the message below";
+                resultLabel2.Content = "Incorrect input, try again!";
             }
-        }
-
-
-        void ResultText(Func<bool> checkFunc, Func<string> resultFunc)
-        {
-            resultLabel.Content = LabMath.ResultText(
-                () => checkFunc(),
-                () => resultFunc());
         }
 
         private void DarkLightToggle_Click(object sender, RoutedEventArgs e)
         {
             isDarkTheme = !isDarkTheme;
-            VisualChanger.ChangeTheme(isDarkTheme, Theme);
+
+            ChangeTheme();
         }
 
-        //private void showHideTaskText_Click(object sender, RoutedEventArgs e)
-        //{
-        //    TaskBox.Visibility = VisualChanger.VisibleReverse(TaskBox.Visibility);
-        //}
+        private void ChangeTheme()
+        {
+            if (isDarkTheme)
+            {
+                Theme.Source = new Uri("Themes/Dark.xaml", UriKind.Relative);
+            }
+            else
+            {
+                Theme.Source = new Uri("Themes/Light.xaml", UriKind.Relative);
+            }
+        }
     }
 }

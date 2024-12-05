@@ -17,30 +17,5 @@ namespace CSharp_Labs_WPF
             }
             return intArr;
         }
-
-        public static string IntArrToText(int[] arr)
-        {
-            string result = String.Empty;
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                result += arr[i].ToString() + ' ';
-            }
-
-            return result.Substring(0, result.Length - 1);
-        }
-
-        public static bool StringToBool(string x)
-        {
-            if (x == "1")
-            {
-                return true;
-            }
-            if (x == "0")
-            {
-                return false;
-            }
-            return bool.Parse(x);
-        }
     }
 }
