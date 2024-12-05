@@ -105,4 +105,3 @@ public static Money operator -(Money money, uint kopeks)
 
 *Вывод:*
 ![image](https://github.com/user-attachments/assets/a5d1d469-72e1-49d8-8e16-aad8e8e5bf46)
-
