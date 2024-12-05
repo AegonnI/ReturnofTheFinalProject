@@ -93,15 +93,56 @@ public static Money operator -(Money money, uint kopeks)
 }
 ```
 
+## Класс MainWindow
+## Поля
+Класс содержит поля:
+```c#
+private bool isDarkTheme = true; // 0 - light, 1 - dark
+```
+
+## Конструкторы
+Конструктор **по умолчанию**:
+
+```c#
+public MainWindow()
+{
+    InitializeComponent();
+
+    if (File.Exists("data.dat"))
+    {
+        StreamReader f = new StreamReader("data.dat");
+        try { isDarkTheme = bool.Parse(f.ReadLine()); }
+        catch { isDarkTheme = true; }
+        f.Close();
+    }
+    ChangeTheme();
+}
+```
+
+## Методы
+
+```c#
+void DataWindow_Closing(object sender, CancelEventArgs e)
+
+private void Show_Result_Click(object sender, RoutedEventArgs e)
+private void DarkLightToggle_Click(object sender, RoutedEventArgs e)
+
+private void ChangeTheme()
+```
+
+
 ## Тесты
 
 # Если пользователь успешно ввел значения рублей и копеек
 
 *Вывод:*
-![image](https://github.com/user-attachments/assets/e5ba4280-394a-490f-82d6-2da2471ccf0e)
-
+![image](https://github.com/user-attachments/assets/123427d4-f784-40f6-8c2a-c9c446d00152)
 
 # Если пользователь ввел некорректные значения рублей и копеек
 
 *Вывод:*
-![image](https://github.com/user-attachments/assets/a5d1d469-72e1-49d8-8e16-aad8e8e5bf46)
+![image](https://github.com/user-attachments/assets/5a3c92dd-eb3d-4ca8-9146-3d32f4708254)
+![image](https://github.com/user-attachments/assets/58b117d9-a61a-469e-bb52-22d0e2bcaa2c)
+![image](https://github.com/user-attachments/assets/3e438b09-a482-4e05-88ab-c7978cda550f)
+
+
