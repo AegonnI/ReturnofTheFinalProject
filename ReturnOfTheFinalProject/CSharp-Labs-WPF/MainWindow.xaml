@@ -45,5 +45,49 @@
             <Label x:Name="resultLabel2" Grid.Row="1" Grid.Column="3" FontSize="16" FontFamily="Lucida Console" Foreground="{DynamicResource Foreground}" Content="there will be overloads here" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" BorderBrush="Orange" Background="{x:Null}" BorderThickness="1,1,1,1"/>
         </Grid>
         <Button x:Name="switchTheme" FontSize="12" FontFamily="Lucida Console" Background="{DynamicResource SecondBackground}" Foreground="{DynamicResource Foreground}" Content="Switch Theme" HorizontalAlignment="Right" Margin="0,0,15,15" VerticalAlignment="Bottom" Click="DarkLightToggle_Click"/>
+
+
+        <Grid x:Name="Ellipses" Panel.ZIndex="-1">
+            <Ellipse HorizontalAlignment="Left" Height="581" Margin="-367,90,0,0" Stroke="Orange" VerticalAlignment="Top" Width="660" RenderTransformOrigin="0.521,0.512">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="9"/>
+                        <RotateTransform Angle="0.843"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse HorizontalAlignment="Left" Height="366" Margin="828,185,0,0" Stroke="Orange" VerticalAlignment="Top" Width="474">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="9" AngleX="3"/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse HorizontalAlignment="Left" Height="90" Margin="860,17,0,0" Stroke="Orange" VerticalAlignment="Top" Width="118">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="9" AngleX="3"/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse HorizontalAlignment="Left" Height="91" Margin="506,373,0,0" Stroke="Orange" VerticalAlignment="Top" Width="118">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="9" AngleX="3"/>
+                        <RotateTransform Angle="-19.017"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+        </Grid>
     </Grid>
 </Window>
