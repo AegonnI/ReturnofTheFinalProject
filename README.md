@@ -130,6 +130,11 @@ private void DarkLightToggle_Click(object sender, RoutedEventArgs e)
 private void ChangeTheme()
 ```
 
+# Вариант темной темы
+![image](https://github.com/user-attachments/assets/b73349d5-249a-4a30-b257-ee5f2f03504f)
+
+# Вариант светлой темы
+![image](https://github.com/user-attachments/assets/2792d669-647a-47a6-89da-a087f3b4c6b2)
 
 ## Тесты
 
